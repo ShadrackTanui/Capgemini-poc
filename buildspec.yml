@@ -4,14 +4,14 @@ phases:
         pre_build:
                 commands:
                      - echo Logging into Amazon ECR.....
-                     - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+                     - $(aws ecr get-login-password --no-include-email --region $AWS_DEFAULT_REGION)
 
         build:
                 commands:
                         - echo build started on 'date'
                         - echo building docker image.....
                         - docker build -t capgemini:2 .
-                        - docker tag capgemini:latest 437421915868.dkr.ecr.us-east-1.amazonaws.com/capgemini:latest
+                        - docker tag capgemini:latest 437421915868.dkr.ecr.us-east-1.amazonaws.com/capgemini
 
         post_build:
                 commands:
