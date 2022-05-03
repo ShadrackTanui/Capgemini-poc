@@ -1,0 +1,20 @@
+version: 0.1
+
+phases:
+        pre_build:
+                commands:
+                     - echo Logging into Amazon ECR.....
+                     - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 437421915868.dkr.ecr.us-east-1.amazonaws.com
+
+        build:
+                commands:
+                        - echo build started on 'date'
+                        - echo building docker image.....
+                        - docker build -t capgemini:2 .
+                        - docker tag capgemini:latest 437421915868.dkr.ecr.us-east-1.amazonaws.com/capgemini:latest
+
+        post_build:
+                commands:
+                        - echo build completed on 'date'
+                        - echo pushing the docker image....
+                        - docker push 437421915868.dkr.ecr.us-east-1.amazonaws.com/capgemini:latest
