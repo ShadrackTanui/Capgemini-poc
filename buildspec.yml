@@ -10,7 +10,7 @@ phases:
                 commands:
                         - echo build started on 'date'
                         - echo building docker image.....
-                        - docker build -t capgemini:2 .
+                        - docker build capgemini:2 .
                         - docker tag capgemini:latest 437421915868.dkr.ecr.us-east-1.amazonaws.com/capgemin2
 
         post_build:
